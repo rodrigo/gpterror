@@ -1,0 +1,3 @@
+terraform/certs/*
+terraform/.terraform
+terraform/variables.tf

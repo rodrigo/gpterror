@@ -1,0 +1,9 @@
+locals {
+  dev = {
+    s3_name = "your_bucket_name",
+    domain_name = "www.gpterror.online"
+    project_name = "gpterror"
+    ec2_instance_type = "t2.micro"
+    ec2_market_type = "spot"
+  }
+}
