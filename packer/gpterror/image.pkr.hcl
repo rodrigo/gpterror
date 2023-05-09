@@ -28,7 +28,7 @@ build {
   post-processor "manifest" {}
 
   provisioner "file" {
-    source      = "generate_and_upload_text.sh"
+    source      = "gpterror/generate_and_upload_text.sh"
     destination = "/tmp/generate_and_upload_text.sh"
   }
 
