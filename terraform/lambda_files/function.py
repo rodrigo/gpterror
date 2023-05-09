@@ -2,6 +2,7 @@ import json
 import urllib.parse
 import boto3
 import os
+from string import Template
 
 s3 = boto3.client('s3')
 
@@ -15,5 +16,5 @@ def lambda_handler(event, context):
     return {
         'statusCode': 200,
         'headers':{'Content-Type': 'text/html; charset=utf-8'},
-        'body': f"<!DOCTYPE html><html></head><title>gpterror</title></head><body>{file_content}</body></html>"
+        'body': Template(open("index.html").read()).safe_substitute(content=file_content, style=open("style.css").read())
     }

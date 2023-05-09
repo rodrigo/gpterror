@@ -1,6 +1,7 @@
 data "archive_file" "gpterror" {
   type        = "zip"
-  source_file = "lambda_files/function.py"
+  source_dir = "lambda_files"
+  excludes    = ["payload.zip"]
   output_path = "lambda_files/payload.zip"
 }
 
