@@ -1,6 +1,3 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
 variable "region" {
   type    = string
   default = "us-east-1"
@@ -8,11 +5,7 @@ variable "region" {
 
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
-
-# source blocks are generated from your builders; a source can be referenced in
-# build blocks. A build block runs provisioners and post-processors on a
-# source.
-source "amazon-ebs" "example" {
+source "amazon-ebs" "gpterror" {
   ami_name      = "gpterror-${local.timestamp}"
   instance_type = "t2.micro"
   region        = var.region
@@ -23,25 +16,26 @@ source "amazon-ebs" "example" {
       virtualization-type = "hvm"
       architecture = "x86_64"
     }
-    
+
     most_recent = true
     owners      = ["137112412989"]
   }
   ssh_username = "ec2-user"
 }
 
-# a build block invokes sources and runs provisioning steps on them.
 build {
-  sources = ["source.amazon-ebs.example"]
+  sources = ["source.amazon-ebs.gpterror"]
   post-processor "manifest" {}
 
   provisioner "file" {
-    source      = "scripts/generate_and_upload_text.sh"
+    source      = "generate_and_upload_text.sh"
     destination = "/tmp/generate_and_upload_text.sh"
   }
 
   provisioner "shell" {
-    script = "scripts/create_crontab.sh"
+    inline = [
+      "echo '* * * * * sh /tmp/generate_and_upload_text.sh' >> cron",
+      "crontab cron"
+    ]
   }
 }
-
