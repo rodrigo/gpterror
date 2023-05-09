@@ -5,7 +5,7 @@ variable "region" {
 
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
-source "amazon-ebs" "example" {
+source "amazon-ebs" "cert_renewer" {
   ami_name      = "cert-renew-${local.timestamp}"
   instance_type = "t2.micro"
   region        = var.region
@@ -24,7 +24,7 @@ source "amazon-ebs" "example" {
 }
 
 build {
-  sources = ["source.amazon-ebs.example"]
+  sources = ["source.amazon-ebs.cert_renewer"]
   post-processor "manifest" {}
 
   provisioner "file" {
@@ -47,7 +47,7 @@ build {
       "pip3 install boto3 pyOpenSSL -q",
       "sudo amazon-linux-extras install epel -y",
       "sudo yum install certbot -y",
-      "echo '5 21 * * * python3 /tmp/renew_certificate.py' >> cron", #UTC
+      "echo '5 23 * * * python3 /tmp/renew_certificate.py' >> cron", #UTC
       "crontab cron"
     ]
   }
