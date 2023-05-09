@@ -2,3 +2,4 @@ terraform/certs/*
 terraform/.terraform
 terraform/variables.tf
 terraform/lambda_files/payload.zip
+terraform/.terraform.lock.hcl
