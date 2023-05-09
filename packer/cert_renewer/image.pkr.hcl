@@ -28,17 +28,17 @@ build {
   post-processor "manifest" {}
 
   provisioner "file" {
-    source      = "scripts/cert_renewer/renew_certificate.py"
+    source      = "renew_certificate.py"
     destination = "/tmp/renew_certificate.py"
   }
 
   provisioner "file" {
-    source      = "scripts/cert_renewer/renew_with_certbot.sh"
+    source      = "renew_with_certbot.sh"
     destination = "/tmp/renew_with_certbot.sh"
   }
 
   provisioner "file" {
-    source      = "scripts/cert_renewer/certbot_token_upload.sh"
+    source      = "certbot_token_upload.sh"
     destination = "/tmp/certbot_token_upload.sh"
   }
 

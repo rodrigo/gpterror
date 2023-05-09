@@ -3,3 +3,5 @@ terraform/.terraform
 terraform/variables.tf
 terraform/lambda_files/payload.zip
 terraform/.terraform.lock.hcl
+packer/*/packer-manifest.json
+packer/packer-manifest.json
