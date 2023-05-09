@@ -18,7 +18,7 @@ resource "godaddy_domain_record" "gpterror" {
   record {
     name = "www"
     type = "CNAME"
-    data = aws_api_gateway_domain_name.gpterror.regional_domain_name
+    data = aws_cloudfront_distribution.this.domain_name
     ttl = 3600
   }
 

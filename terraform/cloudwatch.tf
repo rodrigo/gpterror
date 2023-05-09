@@ -12,7 +12,7 @@ resource "aws_cloudwatch_metric_alarm" "less-than-or-equal-to-80" {
 }
 
 resource "aws_autoscaling_policy" "increase-capacity" {
-  name                   = "Escalar ASG"
+  name                   = "Upscale ASG"
   scaling_adjustment     = 1
   adjustment_type        = "ExactCapacity"
   cooldown               = 30
@@ -33,7 +33,7 @@ resource "aws_cloudwatch_metric_alarm" "higher-than-98" {
 }
 
 resource "aws_autoscaling_policy" "decrease-capacity" {
-  name                   = "Reduzir ASG"
+  name                   = "Downscale ASG"
   scaling_adjustment     = 0
   adjustment_type        = "ExactCapacity"
   cooldown               = 30
