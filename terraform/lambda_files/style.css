@@ -37,3 +37,16 @@
   left: 2%;
   text-align: center;
 }
+
+.link {
+  position: absolute;
+  top: 98%;
+  left: 1%;
+  text-align: center;
+  font-size: 40%;
+  text-decoration: underline;
+}
+
+a {
+  color: black;
+}
